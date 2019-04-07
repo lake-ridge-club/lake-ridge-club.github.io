@@ -1,0 +1,15 @@
+<svg viewBox="0 0 280 40" xmlns="http://www.w3.org/2000/svg">
+	<style>
+	text { 
+		font: Times New Roman; 
+		font-size: 40px;
+		transform: scale(.75,1);
+		stroke-opacity: .3;
+		stroke: #4169e1;
+		fill: #ffd700; 
+	}
+	</style>
+
+  <text x="15" y="33" stroke="#4169e1" stroke-width="1">LAKE RID</text>  
+  <text x="185" y="33" stroke="#4169e1" stroke-width="1">GE CLUB</text>
+</svg>

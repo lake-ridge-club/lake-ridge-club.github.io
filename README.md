@@ -1,1 +1,1 @@
-# lake-ridge-club.github.io
+http://lake-ridge-club.github.io
