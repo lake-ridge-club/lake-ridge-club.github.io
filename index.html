@@ -7,14 +7,16 @@
         body {
             font-family: Arial, "Helvetica Neue", Helvetica, sans-serif
         }
+
         #poptitle {
             position: absolute;
-            top: 25vh;
+            top: 15vh;
             left: 25vw;
             font-size: 5vh;
             height: 50vh;
             width: 50vw;
         }
+
         h1,
         h3 {
             color: white;
@@ -24,12 +26,15 @@
             border-radius: 10px;
             display: table;
         }
+
         h1 {
             padding: 5px;
         }
+
         h3 {
             font-size: .7em;
         }
+
         .creditTag {
             color: lightblue;
             height: .8em;
@@ -39,6 +44,7 @@
             bottom: 1vh;
             right: 1vw;
         }
+
         /* iPhone */
         @media only screen and (width:320px) and (device-width:320px) and (device-height:480px) and (orientation: landscape) {
             body {
@@ -50,6 +56,7 @@
                 width: 480px;
             }
         }
+
         /* iPad */
         @media only screen and (width:768px) and (device-width:768px) and (device-height:1024px) and (orientation: landscape) {
             body {
@@ -61,11 +68,12 @@
                 width: 1024px;
             }
         }
-        
+
         .lakeridgelogo {
-		border: 3px solid #ffd700;
-		border-radius: 25px;
-		background: #4169e1;
+            border: 3px solid #ffd700;
+            border-radius: 25px;
+            background: #4169e1;
+            background-image: url(content/lake-ridge-club-logo.svg);
         }
     </style>
 </head>
@@ -75,11 +83,9 @@
         src="content/lakeview.jpeg">
 
     <div id="poptitle">
-        <div class="lakeridgelogo">
-            <img src="content/lake-ridge-club-logo.svg"/>
-        </div>
+        <div class="lakeridgelogo"> </div>
     </div>
-    
+
     <i class="creditTag">
         Photo by David Walker
     </i>
