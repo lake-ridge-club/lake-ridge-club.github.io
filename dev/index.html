@@ -1,6 +1,94 @@
-<html ng-app>
+<html>
   <head>
     <title>Lake Ridge Club Homeowner's Association</title>
+    <script>
+      !(function(e) {
+        var n = /iPhone/i,
+          t = /iPod/i,
+          r = /iPad/i,
+          a = /\bAndroid(?:.+)Mobile\b/i,
+          p = /Android/i,
+          l = /\bAndroid(?:.+)SD4930UR\b/i,
+          b = /\bAndroid(?:.+)(?:KF[A-Z]{2,4})\b/i,
+          f = /Windows Phone/i,
+          u = /\bWindows(?:.+)ARM\b/i,
+          c = /BlackBerry/i,
+          s = /BB10/i,
+          v = /Opera Mini/i,
+          h = /\b(CriOS|Chrome)(?:.+)Mobile/i,
+          w = /\Mobile(?:.+)Firefox\b/i;
+        function m(e, i) {
+          return e.test(i);
+        }
+        function i(e) {
+          var i =
+              e || ("undefined" != typeof navigator ? navigator.userAgent : ""),
+            o = i.split("[FBAN");
+          void 0 !== o[1] && (i = o[0]),
+            void 0 !== (o = i.split("Twitter"))[1] && (i = o[0]);
+          var d = {
+            apple: {
+              phone: m(n, i),
+              ipod: m(t, i),
+              tablet: !m(n, i) && m(r, i),
+              device: m(n, i) || m(t, i) || m(r, i)
+            },
+            amazon: {
+              phone: m(l, i),
+              tablet: !m(l, i) && m(b, i),
+              device: m(l, i) || m(b, i)
+            },
+            android: {
+              phone: m(l, i) || m(a, i),
+              tablet: !m(l, i) && !m(a, i) && (m(b, i) || m(p, i)),
+              device: m(l, i) || m(b, i) || m(a, i) || m(p, i)
+            },
+            windows: {
+              phone: m(f, i),
+              tablet: m(u, i),
+              device: m(f, i) || m(u, i)
+            },
+            other: {
+              blackberry: m(c, i),
+              blackberry10: m(s, i),
+              opera: m(v, i),
+              firefox: m(w, i),
+              chrome: m(h, i),
+              device: m(c, i) || m(s, i) || m(v, i) || m(w, i) || m(h, i)
+            }
+          };
+          return (
+            (d.any =
+              d.apple.device ||
+              d.android.device ||
+              d.windows.device ||
+              d.other.device),
+            (d.phone = d.apple.phone || d.android.phone || d.windows.phone),
+            (d.tablet = d.apple.tablet || d.android.tablet || d.windows.tablet),
+            d
+          );
+        }
+        "undefined" != typeof module &&
+        module.exports &&
+        "undefined" == typeof window
+          ? (module.exports = i)
+          : "undefined" != typeof module &&
+            module.exports &&
+            "undefined" != typeof window
+          ? (module.exports = i())
+          : "function" == typeof define && define.amd
+          ? define([], (e.isMobile = i()))
+          : (e.isMobile = i());
+      })(this);
+    </script>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- production version, optimized for size and speed 
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    -->
+
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -38,8 +126,8 @@
         font-size: 3vw;
       }
 
-      .hamburgermenu:hover{
-          cursor: pointer;
+      .hamburgermenu:hover {
+        cursor: pointer;
       }
 
       img.lakeridgelogo {
@@ -50,7 +138,7 @@
         width: 60vw;
       }
 
-      @media only screen and (max-width: 767px) {
+      @media only screen and (max-width: 400px) {
         img.lakeridgelogo {
           left: 10vw;
           width: 80vw;
@@ -64,34 +152,37 @@
         }
       }
 
-      /* iPhone */
-      @media only screen and (width: 320px) and (device-width: 320px) and (device-height: 480px) and (orientation: landscape) {
-        body {
-          -webkit-transform: scale(0.667);
-          -webkit-transform-origin: top right;
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 480px;
-        }
+      #app {
+        color: white;
+        font-weight: bold;
+        font-size: 3em;
+        position: absolute;
+        right: 0;
+        bottom: 0;
       }
 
-      /* iPad */
-      @media only screen and (width: 768px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
-        body {
-          -webkit-transform: scale(0.75);
-          -webkit-transform-origin: top right;
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 1024px;
-        }
+      .mobile #app {
+        background-color: green;
+      }
+
+      .mobile img.lakeridgelogo {
+        left: 10vw;
+        width: 90vw;
+        top: 5vh;
+      }
+
+      .mobile .hamburgermenu {
+        position: absolute;
+        top: 6vh;
+        left: 1vw;
+        font-size: 5vh;
       }
     </style>
     <script>
-        function openMenu(){
-            console.log("Opening...");
-        }
+      function openMenu() {
+        console.log("Opening...");
+        document.getElementById("app").style.backgroundColor = "red";
+      }
     </script>
   </head>
   <body>
@@ -104,10 +195,58 @@
 
     <img class="lakeridgelogo" src="content/lake-ridge-club-logo.svg" />
 
+    <div id="app">{{ message }}</div>
+
     <i class="creditTag">
       Photo by David Walker
     </i>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script>
+      var body = document.body;
+
+      function handleResize() {
+        body.classList.remove("portrait", "landscape");
+        if (window.innerHeight > window.innerWidth) {
+          body.classList.add("portrait");
+        } else {
+          body.classList.add("landscape");
+        }
+      }
+
+      function addDeviceClasses(deviceKey) {
+        body.classList.add(deviceKey);
+
+        var device = isMobile[deviceKey];
+        if (device.phone) {
+          body.classList.add("phone");
+        }
+
+        if (device.tablet) {
+          body.classList.add("tablet");
+        }
+      }
+
+      body.addEventListener("resize", handleResize);
+      handleResize();
+
+      if (isMobile.any) {
+        body.classList.add("mobile");
+
+        Object.keys(isMobile)
+          .filter(v => isMobile[v].device)
+          .forEach(v => addDeviceClasses(v));
+      } else {
+        body.classList.add("desktop");
+      }
+
+      var browser = body.className;
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue on " + browser
+        }
+      });
+    </script>
   </body>
 </html>
