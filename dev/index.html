@@ -132,17 +132,17 @@
 
       img.lakeridgelogo {
         position: absolute;
-        left: 20vw;
-        top: 20vh;
+        left: 10vw;
+        top: 10vh;
+        width: 80vw;
         min-width: 200px;
-        width: 60vw;
       }
 
       @media only screen and (max-width: 400px) {
         img.lakeridgelogo {
           left: 10vw;
-          width: 80vw;
           top: 10vh;
+          width: 80vw;
         }
 
         .hamburgermenu {
@@ -150,6 +150,19 @@
           top: 10vh;
           left: 5vw;
         }
+      }
+
+      .calendar {
+        position: absolute;
+        bottom: 10vh;
+        left: 10vw;
+        border: solid 1px #777;
+        width: 300px;
+        height: 200px;
+      }
+
+      .mobile .calendar{
+        display: none;
       }
 
       #app {
@@ -197,6 +210,8 @@
 
     <div id="app">{{ message }}</div>
 
+    <iframe class="calendar" frameborder="0" scrolling="no"></iframe>
+
     <i class="creditTag">
       Photo by David Walker
     </i>
@@ -226,9 +241,6 @@
         }
       }
 
-      body.addEventListener("resize", handleResize);
-      handleResize();
-
       if (isMobile.any) {
         body.classList.add("mobile");
 
@@ -239,14 +251,26 @@
         body.classList.add("desktop");
       }
 
+      // if (!isMobile.any) {
+      //   Array.from(document.getElementsByClassName("calendar")).forEach(v =>
+      //     v.setAttribute(
+      //       "src",
+      //       "https://calendar.google.com/calendar/embed?showTitle=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=ssa2j2or1ko1fludjgj25dnrl0%40group.calendar.google.com&amp;color=%230F4B38&amp;ctz=America%2FNew_York"
+      //     )
+      //   );
+      // }
+
       var browser = body.className;
 
-      var app = new Vue({
-        el: "#app",
-        data: {
-          message: "Hello Vue on " + browser
-        }
-      });
+      // var app = new Vue({
+      //   el: "#app",
+      //   data: {
+      //     message: "Hello Vue on " + browser
+      //   }
+      // });
+
+      // window.addEventListener("resize", handleResize);
+      // handleResize();
     </script>
   </body>
 </html>

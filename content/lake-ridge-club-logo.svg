@@ -1,16 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 300 60">
     <style>
-        text { font: Times New Roman; font-size: 40px; transform: scale(0.75, 1); stroke-opacity: 0.5; stroke: #4169e1; fill: #ffd700; } 
-		rect.shadow { fill-opacity: .7; fill: #000000; stroke-width: 0; } 
-		rect.border { fill: blue; stroke: gold; stroke-width: 2; }
+        text { 
+          font: Times New Roman; 
+          font-size: 40px; 
+          transform: scale(0.75, 1); 
+          stroke-opacity: 1; 
+          stroke-width: .1px;
+          stroke: #000000;
+          fill: #ffd700; } 
+        rect.shadow { fill-opacity: .7; fill: #000000; stroke-width: 0; } rect.border { fill: black; stroke: gold; stroke-width: 2; }
     </style>
     <defs>
-    <filter id="shadowFilter" height="180%" width="180%">
-      <feDropShadow dx="5" dy="5" stdDeviation="2" flood-color="#332b00" flood-opacity=".7"/>
-    </filter>
+        <filter id="shadowFilter" width="180%" height="180%">
+            <feDropShadow dx="5" dy="5" flood-color="#332b00" flood-opacity=".7" stdDeviation="2"/>
+        </filter>
     </defs>
     <rect width="280" height="40" class="border" filter="url(#shadowFilter)" rx="10" ry="10"/>
-	<text x="16" y="33" stroke="#4169e1" stroke-width="1">LAKE RID</text>  
-	<text x="186" y="33" stroke="#4169e1" stroke-width="1">GE CLUB</text>
-
+    <text class="lake" x="16" y="33">
+        LAKE RID
+    </text>
+    <text class="club" x="186" y="33">
+        GE CLUB
+    </text>
 </svg>
