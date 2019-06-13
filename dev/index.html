@@ -161,7 +161,7 @@
         height: 200px;
       }
 
-      .mobile .calendar{
+      .mobile .calendar {
         display: none;
       }
 
@@ -190,13 +190,32 @@
         left: 1vw;
         font-size: 5vh;
       }
-    </style>
-    <script>
-      function openMenu() {
-        console.log("Opening...");
-        document.getElementById("app").style.backgroundColor = "red";
+
+      .center-screen {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
       }
-    </script>
+
+      .button {
+        background-color: lightgray;
+        border-radius: 5px;
+        border: 1px solid black;
+        color: white;
+        padding: 0.5em;
+        text-decoration: none;
+        height: 2em;
+        width: 10em;
+      }
+
+      .button:focus,
+      .button:hover {
+        background-color: gray;
+      }
+    </style>
   </head>
   <body>
     <img
@@ -208,10 +227,9 @@
 
     <img class="lakeridgelogo" src="content/lake-ridge-club-logo.svg" />
 
-    <div id="app">{{ message }}</div>
-
-    <iframe class="calendar" frameborder="0" scrolling="no"></iframe>
-
+    <div class="center-screen">
+      <a class="button" href="https://lakeridgeclub.groups.io/g/main">Log In</a>
+    </div>
     <i class="creditTag">
       Photo by David Walker
     </i>
@@ -250,27 +268,6 @@
       } else {
         body.classList.add("desktop");
       }
-
-      // if (!isMobile.any) {
-      //   Array.from(document.getElementsByClassName("calendar")).forEach(v =>
-      //     v.setAttribute(
-      //       "src",
-      //       "https://calendar.google.com/calendar/embed?showTitle=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=ssa2j2or1ko1fludjgj25dnrl0%40group.calendar.google.com&amp;color=%230F4B38&amp;ctz=America%2FNew_York"
-      //     )
-      //   );
-      // }
-
-      var browser = body.className;
-
-      // var app = new Vue({
-      //   el: "#app",
-      //   data: {
-      //     message: "Hello Vue on " + browser
-      //   }
-      // });
-
-      // window.addEventListener("resize", handleResize);
-      // handleResize();
     </script>
   </body>
 </html>
